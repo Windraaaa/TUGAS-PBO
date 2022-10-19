@@ -19,6 +19,7 @@ public class MyWorld extends World
         super(600, 400, 1); 
         prepare();
     }
+
     /**
      * Prepare the world for the start of the program.
      * That is: create the initial objects and add them to the world.
@@ -26,9 +27,28 @@ public class MyWorld extends World
     private void prepare()
     {
         Hero hero = new Hero();
-        addObject(hero,0,115);
-        
-        Hero hero1 = new Hero();
-        addObject(hero1,0,315);
+        addObject(hero,50,210);
+        hero.setLocation(62,208);
+        Laser laser = new Laser();
+        addObject(laser,62,208);
+        hero.setLocation(226,221);
+        removeObject(laser);
+    }
+    
+    public void act(){
+        spawnEnemy();
+    }
+    
+    public int timerEnemy = 0;
+    public void spawnEnemy(){
+        if(timerEnemy == 180){//jika timer = 3 detik
+            // int speed = Greenfoot.speed
+            Enemy enemy = new Enemy();
+            addObject(new Enemy(),600, Greenfoot.getRandomNumber(400));
+            timerEnemy = 0;
+        }else{
+            timerEnemy++;
+        }
     }
 }
+
